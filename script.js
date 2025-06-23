@@ -1,78 +1,56 @@
-<<<<<<< HEAD
 // --- GLOBALS & CONSTANTS ---
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-=======
-// Global variable to store GROQ_API_KEY
-// IMPORTANT: This is not secure for a production client-side application.
-// For Netlify deployment, this should be handled via Netlify Functions and environment variables.
-        // The GROQ_API_KEY would be stored as an environment variable in Netlify,
-        // and a Netlify Function would make the call to the Groq API,
-        // preventing the key from being exposed client-side.
-let GROQ_API_KEY = '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'; // Temporary for local testing.
->>>>>>> c123333e321c9390a3fddcb758f58c0ece572980
-
-// Hardcoded API keys list (replace with your real keys)
-const OPENROUTER_API_KEYS = [
-    "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",
-    "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",
-    "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"
-];
-let OPENROUTER_API_KEY_INDEX = 0;
 let lastDebateText = ""; // Store the last debate as plain text
 
-// --- UI RENDERING ---
-function renderApiKeyList() {
-    // Optionally, you can show which key is being used for debugging
-    // Or just leave this function empty if you don't want to show keys
-}
-
-// --- MULTI-KEY API CALLS ---
+// --- NETLIFY FUNCTION API CALL ---
 async function callOpenRouterAPI(model, prompt, systemMessage = "আপনি একজন সহায়ক সহকারী যিনি বিতর্কে অংশ নিচ্ছেন।") {
-    let lastError = null;
-    for (let i = 0; i < OPENROUTER_API_KEYS.length; i++) {
-        OPENROUTER_API_KEY_INDEX = i;
-        try {
-            const response = await fetch(OPENROUTER_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${OPENROUTER_API_KEYS[i]}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    messages: [
-                        { role: "system", content: systemMessage },
-                        { role: "user", content: prompt }
-                    ],
-                    model: model,
-                    temperature: 0.7,
-                    max_tokens: 1024,
-                    top_p: 1,
-                    stream: false
-                })
-            });
-            if (response.ok) {
-                const data = await response.json();
-                if (data.choices && data.choices[0]?.message?.content) {
-                    return data.choices[0].message.content.trim();
-                }
-            } else if (response.status === 401 || response.status === 429) {
-                lastError = new Error("Key failed: " + response.status);
-                continue;
-            } else {
-                lastError = new Error(await response.text());
-                break;
+    try {
+        const response = await fetch('/.netlify/functions/call-openrouter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: model,
+                prompt: prompt,
+                systemMessage: systemMessage
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            // The Netlify function should return a JSON with an 'error' field.
+            // It might also include 'details' from the OpenRouter API error response.
+            let errorMessage = data.error || `API Error: ${response.status}`;
+            if (data.details && typeof data.details === 'string' && data.details.includes("No instances available")) {
+                 errorMessage = "এই মুহূর্তে নির্বাচিত মডেলটি উপলব্ধ নেই। অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।";
+            } else if (response.status === 401) {
+                errorMessage = "API key সমস্যা অথবা কোটা শেষ।";
+            } else if (response.status === 429) {
+                errorMessage = "রেট লিমিট অতিক্রম করেছে অথবা মডেলটির দৈনিক কোটা শেষ।";
             }
-        } catch (e) {
-            lastError = e;
-            continue;
+            console.error("Error calling Netlify function:", errorMessage, data.details || '');
+            throw new Error(errorMessage);
         }
+
+        if (data.choices && data.choices[0]?.message?.content) {
+            return data.choices[0].message.content.trim();
+        } else {
+            // Handle cases where the response is OK but doesn't have the expected structure
+            console.error("Unexpected response structure from API:", data);
+            throw new Error("API থেকে অপ্রত্যাশিত উত্তর এসেছে।");
+        }
+    } catch (error) {
+        console.error("Fetch error calling Netlify function:", error);
+        // Re-throw the error so it can be caught by the startDebate function's catch block
+        // Ensure the message is user-friendly if it's one we've set.
+        throw error;
     }
-    throw lastError || new Error("No valid OpenRouter API key.");
 }
 
 // --- DOM READY & MAIN LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Remove all API key input UI and related event listeners from here
+    // API key UI is no longer needed here as it's server-side.
 
     // UI Elements
     const debateTopicInput = document.getElementById('debate-topic');
@@ -92,8 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     };
 
-    // API Key UI events
-    renderApiKeyList();
+    // No need for renderApiKeyList() anymore.
 
     if (startDebateBtn) {
         startDebateBtn.onclick = () => {
@@ -181,12 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
             lastDebateText = `${debateTranscript}\n\nবিচারকের রায়:\n${verdict}`; // Store the last debate text
 
         } catch (error) {
-            let msg = error.message;
-            if (msg.includes("No instances available")) {
-                msg = "এই মুহূর্তে নির্বাচিত মডেলটি উপলব্ধ নেই। অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।";
-            }
+            // The error message should now be more directly from the Netlify function or the refined client-side messages
             console.error("Debate flow error:", error);
-            displayVerdict("সিস্টেম", `একটি ত্রুটি ঘটেছে: ${msg}`);
+            displayVerdict("সিস্টেম", `একটি ত্রুটি ঘটেছে: ${error.message}`);
         } finally {
             startDebateBtn.disabled = false;
             startDebateBtn.textContent = "বিতর্ক শুরু করুন";

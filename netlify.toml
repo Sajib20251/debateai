@@ -11,8 +11,8 @@
 
 # Optional: Specify a functions directory if using Netlify Functions
 # (e.g., for the Groq API proxy)
-# [functions]
-#   directory = "netlify/functions"
+[functions]
+  directory = "netlify/functions"
 
 # Optional: Redirects and rewrites can be defined here
 # [[redirects]]
