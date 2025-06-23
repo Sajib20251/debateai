@@ -4,7 +4,7 @@
         // The GROQ_API_KEY would be stored as an environment variable in Netlify,
         // and a Netlify Function would make the call to the Groq API,
         // preventing the key from being exposed client-side.
-let GROQ_API_KEY = ''; // Temporary for local testing.
+let GROQ_API_KEY = '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'; // Temporary for local testing.
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("AI Debate Engine script loaded.");
