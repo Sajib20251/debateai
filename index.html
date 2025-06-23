@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা এআই বিতর্ক ইঞ্জিন</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>বাংলা এআই বিতর্ক ইঞ্জিন</h1>
+
+    <div class="container">
+        <div class="settings">
+            <h2>বিতর্কের সেটিংস</h2>
+            <div>
+                <label for="debate-topic">বিতর্কের বিষয়:</label>
+                <input type="text" id="debate-topic" name="debate-topic" placeholder="এখানে বিতর্কের বিষয় লিখুন...">
+            </div>
+
+            <div>
+                <label for="agree-model">পক্ষে বক্তা (LLM):</label>
+                <select id="agree-model" name="agree-model">
+                    <option value="llama3-8b-8192">Llama3-8b</option>
+                    <option value="llama3-70b-8192">Llama3-70b</option>
+                    <option value="mixtral-8x7b-32768">Mixtral-8x7b</option>
+                    <option value="gemma-7b-it">Gemma-7b</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="disagree-model">বিপক্ষে বক্তা (LLM):</label>
+                <select id="disagree-model" name="disagree-model">
+                    <option value="llama3-8b-8192">Llama3-8b</option>
+                    <option value="llama3-70b-8192">Llama3-70b</option>
+                    <option value="mixtral-8x7b-32768">Mixtral-8x7b</option>
+                    <option value="gemma-7b-it">Gemma-7b</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="judge-model">বিচারক (LLM):</label>
+                <select id="judge-model" name="judge-model">
+                    <option value="llama3-8b-8192">Llama3-8b (Judge)</option>
+                    <option value="llama3-70b-8192">Llama3-70b (Judge)</option>
+                    <option value="mixtral-8x7b-32768">Mixtral-8x7b (Judge)</option>
+                    <option value="gemma-7b-it">Gemma-7b (Judge)</option>
+                </select>
+            </div>
+
+            <button id="start-debate-btn">বিতর্ক শুরু করুন</button>
+        </div>
+
+        <div class="debate-area">
+            <h2>বিতর্কের বিবরণ</h2>
+            <div id="transcript-area">
+                <!-- Debate phases will be appended here -->
+            </div>
+        </div>
+
+        <div class="judgment-area">
+            <h2>বিচারকের রায়</h2>
+            <div id="verdict-area">
+                <!-- Judge's verdict will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

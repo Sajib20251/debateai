@@ -1,0 +1,21 @@
+# Basic Netlify configuration file
+
+[build]
+  # For a simple static site like this, Netlify often doesn't need a build command.
+  # If you had a build step (e.g., npm run build), you'd specify it here.
+  # command = "your-build-command"
+  
+  # The directory that contains the deploy-ready assets.
+  # For this project, it's the root directory where index.html is.
+  publish = "/"
+
+# Optional: Specify a functions directory if using Netlify Functions
+# (e.g., for the Groq API proxy)
+# [functions]
+#   directory = "netlify/functions"
+
+# Optional: Redirects and rewrites can be defined here
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200

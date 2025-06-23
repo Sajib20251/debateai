@@ -1,0 +1,217 @@
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
+    text-align: right;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Bengali font support */
+@font-face {
+    font-family: 'Bangla';
+    src: local('Siyam Rupali'), local('Kalpurush'), local('SolaimanLipi');
+}
+
+body, button, input, select, textarea {
+    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container layout */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Settings panel */
+.settings {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.settings h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.settings div {
+    margin-bottom: 15px;
+}
+
+/* Form elements */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Debate areas */
+.debate-area,
+.judgment-area {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#transcript-area,
+#verdict-area {
+    min-height: 200px;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+/* Debate phases */
+.phase {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.phase:last-child {
+    border-bottom: none;
+}
+
+.phase-title {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.speaker-argument {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Role-specific styling */
+.phase-title[class*="পক্ষে"] {
+    color: #27ae60; /* Green for pro */
+}
+
+.phase-title[class*="বিপক্ষে"] {
+    color: #e74c3c; /* Red for con */
+}
+
+.phase-title[class*="বিচারক"] {
+    color: #9b59b6; /* Purple for judge */
+}
+
+/* Loading and state indicators */
+#start-debate-btn[disabled] {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    position: relative;
+    opacity: 0.8;
+}
+
+#start-debate-btn[disabled]:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+.system-message {
+    color: #7f8c8d;
+    font-style: italic;
+    border-left: 3px solid #bdc3c7;
+    padding-right: 10px;
+    margin: 10px 0;
+}
+
+.error-message {
+    color: #c0392b;
+    background-color: #f9ebea;
+    border: 1px solid #e6c0c0;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Debate phase indicators */
+.debate-phase-indicator {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Better Bengali typography */
+.speaker-argument, .judge-verdict {
+    font-size: 1.1em;
+    line-height: 1.8;
+    text-align: justify;
+    hyphens: auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Phase transition animations */
+.phase {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive layout */
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 300px 1fr;
+    }
+    
+    .judgment-area {
+        grid-column: span 2;
+    }
+}
