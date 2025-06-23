@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 // --- GLOBALS & CONSTANTS ---
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+=======
+// Global variable to store GROQ_API_KEY
+// IMPORTANT: This is not secure for a production client-side application.
+// For Netlify deployment, this should be handled via Netlify Functions and environment variables.
+        // The GROQ_API_KEY would be stored as an environment variable in Netlify,
+        // and a Netlify Function would make the call to the Groq API,
+        // preventing the key from being exposed client-side.
+let GROQ_API_KEY = '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'; // Temporary for local testing.
+>>>>>>> c123333e321c9390a3fddcb758f58c0ece572980
 
 // Hardcoded API keys list (replace with your real keys)
 const OPENROUTER_API_KEYS = [
