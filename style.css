@@ -1,13 +1,14 @@
 /* Base styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     direction: rtl;
     text-align: right;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    color: #222;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
 }
 
 /* Bengali font support */
@@ -16,92 +17,182 @@ body {
     src: local('Siyam Rupali'), local('Kalpurush'), local('SolaimanLipi');
 }
 
-body, button, input, select, textarea {
-    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 /* Container layout */
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 28px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
+    padding: 0 16px 40px 16px;
 }
 
 /* Settings panel */
 .settings {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.97);
+    padding: 32px 28px 28px 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10), 0 2px 8px rgba(44, 62, 80, 0.07);
+    border: 1.5px solid #e3e9f0;
+    margin-bottom: 0;
 }
 
 .settings h2 {
     margin-top: 0;
     color: #2c3e50;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    font-weight: 700;
 }
 
 .settings div {
-    margin-bottom: 15px;
+    margin-bottom: 22px;
 }
 
 /* Form elements */
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #34495e;
+    font-size: 1.08em;
 }
 
 input[type="text"],
 select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 12px 14px;
+    border: 1.7px solid #d0d7e2;
+    border-radius: 7px;
+    font-size: 1.07em;
+    background: #fafdff;
+    margin-bottom: 2px;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(52,152,219,0.03);
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+    background: #f0f8ff;
+    box-shadow: 0 0 0 2px #b3e0fc;
 }
 
 button {
-    background-color: #3498db;
+    background: linear-gradient(90deg, #3498db 60%, #6dd5fa 100%);
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 12px 22px;
+    border-radius: 7px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    font-size: 1.07em;
+    font-weight: 600;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 2px;
+    margin-right: 2px;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.07);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background: linear-gradient(90deg, #2980b9 60%, #3498db 100%);
+    box-shadow: 0 6px 18px rgba(52,152,219,0.16);
+    transform: translateY(-2px) scale(1.03);
+}
+
+button[style*="background:#e74c3c"] {
+    background: linear-gradient(90deg, #e74c3c 60%, #ff7675 100%) !important;
+}
+
+button[style*="background:#e74c3c"]:hover {
+    background: linear-gradient(90deg, #c0392b 60%, #e74c3c 100%) !important;
+}
+
+#download-history-btn {
+    width: 100%;
+    margin-top: 22px !important;
+    background: linear-gradient(90deg, #27ae60 60%, #6dd5b3 100%) !important;
+    font-size: 1.12em;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(39,174,96,0.07);
+}
+
+#download-history-btn:hover {
+    background: linear-gradient(90deg, #219150 60%, #27ae60 100%) !important;
+    box-shadow: 0 6px 18px rgba(39,174,96,0.13);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* API key list styling */
+#api-key-list, #groq-api-key-list {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+#api-key-list li, #groq-api-key-list li {
+    background: #f3f8fa;
+    border: 1px solid #e1eaf0;
+    border-radius: 5px;
+    padding: 7px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    font-size: 0.98em;
+    justify-content: space-between;
+    transition: background 0.2s;
+}
+
+#api-key-list li[style*="font-weight: bold"], #groq-api-key-list li[style*="font-weight: bold"] {
+    background: #eafaf1;
+    border-color: #b7eacb;
 }
 
 /* Debate areas */
 .debate-area,
 .judgment-area {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.98);
+    padding: 30px 26px 26px 26px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10), 0 2px 8px rgba(44, 62, 80, 0.07);
+    border: 1.5px solid #e3e9f0;
+    margin-bottom: 0;
+}
+
+.debate-area h2,
+.judgment-area h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.32em;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 #transcript-area,
 #verdict-area {
     min-height: 200px;
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #fafafa;
+    border: 1.7px solid #e3e9f0;
+    padding: 20px 16px;
+    border-radius: 8px;
+    background: #fafdff;
     overflow-y: auto;
     max-height: 500px;
+    margin-top: 10px;
+    font-size: 1.12em;
+    box-shadow: 0 1px 2px rgba(52,152,219,0.03);
 }
 
 /* Debate phases */
 .phase {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     padding-bottom: 20px;
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px dashed #d0d7e2;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .phase:last-child {
@@ -111,30 +202,38 @@ button:hover {
 .phase-title {
     color: #2c3e50;
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 1.13em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 .speaker-argument {
     margin: 0;
     white-space: pre-wrap;
+    font-size: 1.13em;
+    line-height: 1.85;
+    text-align: justify;
+    hyphens: auto;
+    color: #222;
 }
 
 /* Role-specific styling */
 .phase-title[class*="পক্ষে"] {
-    color: #27ae60; /* Green for pro */
+    color: #27ae60;
 }
 
 .phase-title[class*="বিপক্ষে"] {
-    color: #e74c3c; /* Red for con */
+    color: #e74c3c;
 }
 
 .phase-title[class*="বিচারক"] {
-    color: #9b59b6; /* Purple for judge */
+    color: #9b59b6;
 }
 
 /* Loading and state indicators */
 #start-debate-btn[disabled] {
-    background-color: #95a5a6;
+    background: #95a5a6 !important;
     cursor: not-allowed;
     position: relative;
     opacity: 0.8;
@@ -164,8 +263,8 @@ button:hover {
 
 .error-message {
     color: #c0392b;
-    background-color: #f9ebea;
-    border: 1px solid #e6c0c0;
+    background: #f9ebea;
+    border: 1.5px solid #e6c0c0;
     border-radius: 4px;
     padding: 10px;
     margin: 10px 0;
@@ -174,7 +273,7 @@ button:hover {
 /* Debate phase indicators */
 .debate-phase-indicator {
     display: inline-block;
-    background-color: #3498db;
+    background: #3498db;
     color: white;
     padding: 3px 8px;
     border-radius: 12px;
@@ -185,10 +284,11 @@ button:hover {
 
 /* Better Bengali typography */
 .speaker-argument, .judge-verdict {
-    font-size: 1.1em;
-    line-height: 1.8;
+    font-size: 1.15em;
+    line-height: 1.95;
     text-align: justify;
     hyphens: auto;
+    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @keyframes spin {
@@ -196,22 +296,37 @@ button:hover {
 }
 
 /* Phase transition animations */
-.phase {
-    animation: fadeIn 0.5s ease-out;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive layout */
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .container {
-        grid-template-columns: 300px 1fr;
+        grid-template-columns: 340px 1fr;
     }
-    
     .judgment-area {
         grid-column: span 2;
+    }
+    .settings {
+        min-width: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0 4px 24px 4px;
+    }
+    .settings, .debate-area, .judgment-area {
+        padding: 14px 6px 10px 6px;
+    }
+    #download-history-btn {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+    .settings h2, .debate-area h2, .judgment-area h2 {
+        font-size: 1.08em;
     }
 }
