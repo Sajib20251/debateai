@@ -325,3 +325,27 @@ select:focus-visible {
 * {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+.footer-credits {
+    color: #374151;
+    font-size: 1rem;
+    text-align: left;
+    margin: 0 auto;
+    padding: 12px 0;
+    max-width: 1200px;
+}
+
+.footer-credits .dev-names {
+    font-weight: 600;
+}
+
+.footer-credits .contact-link {
+    color: #ea580c;
+    text-decoration: underline;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+.footer-credits .contact-link:hover {
+    color: #d97706;
+    text-decoration: none;
+}
