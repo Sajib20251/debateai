@@ -1,19 +1,19 @@
-/* Base styles */
+/* Base styles - Claude-inspired white theme */
 body {
     font-family: 'Bangla', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
     direction: rtl;
     text-align: right;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    color: #222;
+    background: #fafafa;
+    color: #2f2f2f;
     min-height: 100vh;
     letter-spacing: 0.01em;
     position: relative;
+    line-height: 1.6;
 }
 
-/* Animated background particles */
+/* Subtle background texture */
 body::before {
     content: '';
     position: fixed;
@@ -22,35 +22,41 @@ body::before {
     width: 100%;
     height: 100%;
     background-image:
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
-    animation: float 20s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(245, 245, 245, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(250, 250, 250, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(248, 248, 248, 0.7) 0%, transparent 50%);
+    animation: subtleFloat 25s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes float {
+@keyframes subtleFloat {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(2deg); }
-    66% { transform: translateY(-10px) rotate(-1deg); }
+    33% { transform: translateY(-5px) rotate(0.5deg); }
+    66% { transform: translateY(-3px) rotate(-0.3deg); }
 }
 
 h1 {
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: #ffffff;
-    font-size: 2.5em;
-    font-weight: 800;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-    animation: glow 3s ease-in-out infinite alternate;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    position: relative;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 4px 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); }
-    to { text-shadow: 0 4px 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5); }
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #d97706, #ea580c);
+    border-radius: 2px;
 }
 
 /* Bengali font support */
@@ -63,348 +69,195 @@ h1 {
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
     max-width: 1200px;
-    margin: 40px auto 0 auto;
-    padding: 0 20px 40px 20px;
+    margin: 0 auto;
+    padding: 0 24px 40px 24px;
 }
 
 /* Settings panel */
 .settings {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 32px 28px 28px 28px;
-    border-radius: 20px;
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        0 8px 16px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e5e5;
     margin-bottom: 0;
     position: relative;
-    overflow: hidden;
-    animation: slideInUp 0.8s ease-out;
+    animation: slideInUp 0.6s ease-out;
 }
 
 @keyframes slideInUp {
-    from { transform: translateY(30px); opacity: 0; }
+    from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
-}
-
-.settings::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
 }
 
 .settings h2 {
     margin-top: 0;
-    color: #2c3e50;
-    font-size: 1.8em;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-}
-
-.settings h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 2px;
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
 }
 
 .settings div {
-    margin-bottom: 20px;
-    animation: fadeInLeft 0.6s ease-out;
+    margin-bottom: 24px;
+    animation: fadeInLeft 0.5s ease-out;
     animation-fill-mode: both;
 }
 
 .settings div:nth-child(2) { animation-delay: 0.1s; }
-.settings div:nth-child(3) { animation-delay: 0.2s; }
-.settings div:nth-child(4) { animation-delay: 0.3s; }
-.settings div:nth-child(5) { animation-delay: 0.4s; }
+.settings div:nth-child(3) { animation-delay: 0.15s; }
+.settings div:nth-child(4) { animation-delay: 0.2s; }
+.settings div:nth-child(5) { animation-delay: 0.25s; }
 
 @keyframes fadeInLeft {
-    from { transform: translateX(-20px); opacity: 0; }
+    from { transform: translateX(-15px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
 
 /* Form elements */
 label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #34495e;
-    font-size: 1.1em;
-    position: relative;
-    padding-left: 8px;
-}
-
-label::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 4px;
-    height: 4px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    border-radius: 50%;
-    transform: translateY(-50%);
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.95rem;
 }
 
 input[type="text"],
 select {
     width: 100%;
-    padding: 14px 16px;
-    border: 2px solid rgba(102, 126, 234, 0.2);
-    border-radius: 12px;
-    font-size: 1.1em;
-    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 16px;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
     margin-bottom: 4px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 input[type="text"]:focus,
 select:focus {
-    border-color: #667eea;
+    border-color: #d97706;
     outline: none;
-    background: rgba(255, 255, 255, 1);
-    box-shadow:
-        0 0 0 4px rgba(102, 126, 234, 0.1),
-        0 8px 24px rgba(102, 126, 234, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
 }
 
 input[type="text"]:hover,
 select:hover {
-    border-color: rgba(102, 126, 234, 0.4);
-    transform: translateY(-1px);
+    border-color: #d1d5db;
 }
 
 button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #1a1a1a;
     color: white;
     border: none;
-    padding: 14px 24px;
-    border-radius: 12px;
+    padding: 12px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 600;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 2px;
-    margin-right: 2px;
-    box-shadow:
-        0 8px 24px rgba(102, 126, 234, 0.3),
-        0 4px 12px rgba(118, 75, 162, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-button:hover::before {
-    left: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 4px 2px;
+    transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-    box-shadow:
-        0 12px 32px rgba(102, 126, 234, 0.4),
-        0 8px 16px rgba(118, 75, 162, 0.3);
-    transform: translateY(-3px) scale(1.02);
+    background: #2d2d2d;
+    transform: translateY(-1px);
 }
 
 button:active {
-    transform: translateY(-1px) scale(0.98);
+    transform: translateY(0);
 }
 
 #download-history-btn {
     width: 100%;
     margin-top: 24px;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: #059669;
     color: white;
     border: none;
     padding: 16px 24px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 14px;
-    box-shadow:
-        0 8px 24px rgba(16, 185, 129, 0.3),
-        0 4px 12px rgba(5, 150, 105, 0.2);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-#download-history-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-#download-history-btn:hover::before {
-    left: 100%;
+    transition: all 0.2s ease;
 }
 
 #download-history-btn:hover {
-    background: linear-gradient(135deg, #059669 0%, #047857 100%);
-    box-shadow:
-        0 12px 32px rgba(16, 185, 129, 0.4),
-        0 8px 16px rgba(5, 150, 105, 0.3);
-    transform: translateY(-3px) scale(1.02);
+    background: #047857;
+    transform: translateY(-1px);
 }
 
 /* Debate areas */
 .debate-area,
 .judgment-area {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 32px 28px 28px 28px;
-    border-radius: 20px;
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        0 8px 16px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e5e5;
     margin-bottom: 0;
-    position: relative;
-    overflow: hidden;
-    animation: slideInUp 0.8s ease-out;
-    animation-delay: 0.2s;
+    animation: slideInUp 0.6s ease-out;
+    animation-delay: 0.1s;
     animation-fill-mode: both;
-}
-
-.debate-area::before,
-.judgment-area::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
 }
 
 .debate-area h2,
 .judgment-area h2 {
     margin-top: 0;
-    color: #2c3e50;
-    font-size: 1.6em;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-}
-
-.debate-area h2::after,
-.judgment-area h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 2px;
+    color: #1a1a1a;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
 }
 
 #transcript-area,
 #verdict-area {
     min-height: 200px;
-    border: 2px solid rgba(102, 126, 234, 0.1);
-    padding: 20px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    border: 2px solid #f3f4f6;
+    padding: 24px;
+    border-radius: 12px;
+    background: #fafafa;
     overflow-y: auto;
     max-height: 500px;
-    margin-top: 12px;
-    font-size: 1.15em;
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 16px;
+    font-size: 1rem;
 }
 
 /* Debate phases */
 .phase {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 18px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.08),
-        0 4px 12px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    animation: phaseSlideIn 0.6s ease-out;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.phase::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.phase:hover::before {
-    opacity: 1;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f3f4f6;
+    animation: phaseSlideIn 0.5s ease-out;
+    transition: all 0.2s ease;
 }
 
 .phase:hover {
     transform: translateY(-2px);
-    box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.12),
-        0 8px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 @keyframes phaseSlideIn {
     from {
-        transform: translateX(-30px);
+        transform: translateX(-20px);
         opacity: 0;
     }
     to {
@@ -414,73 +267,44 @@ button:active {
 }
 
 .phase-title {
-    color: #2c3e50;
+    color: #1a1a1a;
     margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 1.2em;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    position: relative;
-    display: inline-block;
-    padding-left: 12px;
-}
-
-.phase-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    border-radius: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 .speaker-argument {
     margin: 0;
     white-space: pre-wrap;
-    font-size: 1.15em;
-    line-height: 1.9;
+    font-size: 1rem;
+    line-height: 1.7;
     text-align: justify;
-    hyphens: auto;
-    color: #2c3e50;
-    position: relative;
-    padding-left: 18px;
-}
-
-.speaker-argument::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, #667eea, #764ba2);
-    border-radius: 2px;
-    opacity: 0.6;
+    color: #374151;
+    border-left: 3px solid #f3f4f6;
+    padding-left: 16px;
 }
 
 /* Role-specific styling */
 .phase:has(.phase-title:contains("পক্ষে")) {
-    border-left: 4px solid #10b981;
+    border-left: 4px solid #059669;
 }
 
 .phase:has(.phase-title:contains("বিপক্ষে")) {
-    border-left: 4px solid #ef4444;
+    border-left: 4px solid #dc2626;
 }
 
 .phase:has(.phase-title:contains("বিচারক")) {
-    border-left: 4px solid #8b5cf6;
+    border-left: 4px solid #7c3aed;
 }
 
 /* Loading and state indicators */
 #start-debate-btn[disabled] {
-    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%) !important;
+    background: #9ca3af !important;
     cursor: not-allowed;
     position: relative;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 #start-debate-btn[disabled]:after {
@@ -488,10 +312,10 @@ button:active {
     position: absolute;
     top: 50%;
     right: 16px;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: white;
     animation: spin 1s linear infinite;
@@ -500,59 +324,47 @@ button:active {
 .system-message {
     color: #6b7280;
     font-style: italic;
-    border-left: 4px solid #d1d5db;
-    padding-right: 16px;
-    padding-left: 16px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    border-left: 4px solid #e5e7eb;
+    padding: 16px;
     margin: 16px 0;
-    background: rgba(249, 250, 251, 0.8);
+    background: #f9fafb;
     border-radius: 8px;
-    backdrop-filter: blur(5px);
 }
 
 .error-message {
     color: #dc2626;
-    background: rgba(254, 242, 242, 0.9);
+    background: #fef2f2;
     border: 2px solid #fecaca;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 16px;
     margin: 16px 0;
-    backdrop-filter: blur(5px);
     animation: shake 0.5s ease-in-out;
 }
 
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
 }
 
 /* Debate phase indicators */
 .debate-phase-indicator {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #374151;
     color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85em;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
     margin-left: 12px;
     vertical-align: middle;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    font-weight: 500;
 }
 
 /* Better Bengali typography */
 .speaker-argument, .judge-verdict {
-    font-size: 1.15em;
-    line-height: 1.9;
+    font-size: 1rem;
+    line-height: 1.7;
     text-align: justify;
-    hyphens: auto;
 }
 
 @keyframes spin {
@@ -563,6 +375,7 @@ button:active {
 @media (min-width: 900px) {
     .container {
         grid-template-columns: 340px 1fr;
+        gap: 32px;
     }
     .judgment-area {
         grid-column: span 2;
@@ -574,53 +387,69 @@ button:active {
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 2em;
+        font-size: 2.2rem;
+        margin-top: 24px;
+        margin-bottom: 32px;
     }
 
     .container {
         grid-template-columns: 1fr;
-        padding: 0 12px 24px 12px;
+        padding: 0 16px 32px 16px;
+        gap: 20px;
     }
 
     .settings, .debate-area, .judgment-area {
-        padding: 20px 16px 16px 16px;
-        border-radius: 16px;
+        padding: 24px 20px;
+        border-radius: 12px;
     }
 
     #download-history-btn {
-        font-size: 1.1em;
-        padding: 14px 16px;
+        font-size: 0.95rem;
+        padding: 14px 20px;
     }
 
     .settings h2, .debate-area h2, .judgment-area h2 {
-        font-size: 1.3em;
+        font-size: 1.25rem;
     }
 
     .phase {
-        padding: 16px 18px;
-        border-radius: 14px;
+        padding: 20px;
+        border-radius: 10px;
     }
 }
 
 /* Scrollbar styling */
 #transcript-area::-webkit-scrollbar,
 #verdict-area::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 #transcript-area::-webkit-scrollbar-track,
 #verdict-area::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+    background: #f3f4f6;
+    border-radius: 3px;
 }
 
 #transcript-area::-webkit-scrollbar-thumb,
 #verdict-area::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #667eea, #764ba2);
-    border-radius: 4px;
+    background: #d1d5db;
+    border-radius: 3px;
 }
 
 #transcript-area::-webkit-scrollbar-thumb:hover,
 #verdict-area::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #5a67d8, #6b46c1);
+    background: #9ca3af;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input[type="text"]:focus-visible,
+select:focus-visible {
+    outline: 2px solid #d97706;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
