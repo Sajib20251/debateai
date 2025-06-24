@@ -44,34 +44,8 @@
                 <input type="text" id="debate-topic" name="debate-topic" placeholder="এখানে বিতর্কের বিষয় লিখুন...">
             </div>
 
-            <div>
-                <label for="agree-model">পক্ষে বক্তা (LLM):</label>
-                <select id="agree-model" name="agree-model">
-                    <option value="llama-4-maverick">Llama-4 Maverick (Free)</option>
-                    <option value="deepseek-r1-0528">DeepSeek R1 (Free)</option>
-                    <option value="llama3-70b-8192">Llama3-70B</option>
-                    <option value="llama3-8b-4096">Llama3-8B (Free)</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="disagree-model">বিপক্ষে বক্তা (LLM):</label>
-                <select id="disagree-model" name="disagree-model">
-                    <option value="llama-4-maverick">Llama-4 Maverick (Free)</option>
-                    <option value="deepseek-r1-0528">DeepSeek R1 (Free)</option>
-                    <option value="llama3-70b-8192">Llama3-70B</option>
-                    <option value="llama3-8b-4096">Llama3-8B (Free)</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="judge-model">বিচারক (LLM):</label>
-                <select id="judge-model" name="judge-model">
-                    <option value="llama-4-maverick">Llama-4 Maverick (Free Judge)</option>
-                    <option value="deepseek-r1-0528">DeepSeek R1 (Free Judge)</option>
-                    <option value="llama3-70b-8192">Llama3-70B (Judge)</option>
-                    <option value="llama3-8b-4096">Llama3-8B (Free Judge)</option>
-                </select>
+            <div class="model-info">
+                <p>মডেল: Llama-4 Maverick</p>
             </div>
 
             <button id="start-debate-btn">বিতর্ক শুরু করুন</button>
@@ -90,6 +64,9 @@
                 <!-- Judge's verdict will be shown here -->
             </div>
         </div>
+    </div>
+
+    <div class="download-container">
     </div>
 
     <button id="download-history-btn">ডিবেট ডাউনলোড করুন (TXT)</button>
