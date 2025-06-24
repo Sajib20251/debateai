@@ -69,24 +69,27 @@ h1::after {
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px 40px 24px;
+    padding: 0 32px 48px 32px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Settings panel */
 .settings {
     background: #ffffff;
-    padding: 32px;
+    padding: 36px;
     border-radius: 16px;
-    box-shadow: 
+    box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.1),
         0 1px 2px rgba(0, 0, 0, 0.06);
     border: 1px solid #e5e5e5;
     margin-bottom: 0;
     position: relative;
     animation: slideInUp 0.6s ease-out;
+    height: fit-content;
 }
 
 @keyframes slideInUp {
@@ -176,9 +179,18 @@ button:active {
     transform: translateY(0);
 }
 
+.download-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 #download-history-btn {
     width: 100%;
-    margin-top: 24px;
+    margin-top: 8px;
+    margin-bottom: 40px;
     background: #1a1a1a;
     color: white;
     border: none;
@@ -188,7 +200,7 @@ button:active {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 
+    box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.1),
         0 1px 2px rgba(0, 0, 0, 0.06);
 }
@@ -205,9 +217,9 @@ button:active {
 .debate-area,
 .judgment-area {
     background: #ffffff;
-    padding: 32px;
+    padding: 36px;
     border-radius: 16px;
-    box-shadow: 
+    box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.1),
         0 1px 2px rgba(0, 0, 0, 0.06);
     border: 1px solid #e5e5e5;
@@ -215,6 +227,8 @@ button:active {
     animation: slideInUp 0.6s ease-out;
     animation-delay: 0.1s;
     animation-fill-mode: both;
+    display: flex;
+    flex-direction: column;
 }
 
 .debate-area h2,
@@ -229,29 +243,32 @@ button:active {
 
 #transcript-area,
 #verdict-area {
-    min-height: 200px;
+    min-height: 250px;
     border: 2px solid #f3f4f6;
-    padding: 24px;
+    padding: 28px;
     border-radius: 12px;
     background: #fafafa;
     overflow-y: auto;
-    max-height: 500px;
+    max-height: min(600px, calc(70vh - 200px));
     margin-top: 16px;
     font-size: 1rem;
+    flex: 1;
 }
 
 /* Debate phases */
 .phase {
     background: #ffffff;
     border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 16px;
-    box-shadow: 
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.1),
         0 1px 2px rgba(0, 0, 0, 0.06);
     border: 1px solid #f3f4f6;
     animation: phaseSlideIn 0.5s ease-out;
     transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .phase:hover {
@@ -378,7 +395,24 @@ button:active {
 }
 
 /* Responsive layout */
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
+    .container {
+        grid-template-columns: 380px 1fr;
+        gap: 40px;
+    }
+    .judgment-area {
+        grid-column: span 2;
+    }
+    .settings {
+        min-width: 340px;
+    }
+    #transcript-area,
+    #verdict-area {
+        max-height: min(700px, calc(75vh - 200px));
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
     .container {
         grid-template-columns: 340px 1fr;
         gap: 32px;
@@ -388,6 +422,23 @@ button:active {
     }
     .settings {
         min-width: 320px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 899px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0 24px 40px 24px;
+        gap: 24px;
+    }
+    
+    .settings, .debate-area, .judgment-area {
+        padding: 32px 28px;
+    }
+    
+    #transcript-area,
+    #verdict-area {
+        max-height: min(500px, calc(60vh - 180px));
     }
 }
 
@@ -409,9 +460,14 @@ button:active {
         border-radius: 12px;
     }
 
+    .download-container {
+        padding: 0 16px;
+    }
+    
     #download-history-btn {
         font-size: 0.95rem;
         padding: 14px 20px;
+        margin-bottom: 32px;
     }
 
     .settings h2, .debate-area h2, .judgment-area h2 {
@@ -422,12 +478,18 @@ button:active {
         padding: 20px;
         border-radius: 10px;
     }
+    
+    #transcript-area,
+    #verdict-area {
+        padding: 20px;
+        max-height: min(400px, calc(60vh - 160px));
+    }
 }
 
 /* Scrollbar styling */
 #transcript-area::-webkit-scrollbar,
 #verdict-area::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 #transcript-area::-webkit-scrollbar-track,
