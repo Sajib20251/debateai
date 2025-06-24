@@ -1,23 +1,9 @@
-/* Base styles - Improved for accessibility and semantic structure */
-body {
-    font-family: 'Bangla', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-    text-align: right;
-    background: #fafafa;
-    color: #2f2f2f;
-    min-height: 100vh;
-    letter-spacing: 0.01em;
-    position: relative;
-    line-height: 1.6;
-}
-
+/* --- Keep the header/title centered --- */
 header {
     text-align: center;
     padding: 40px 0;
     background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 header h1 {
@@ -41,24 +27,56 @@ header h1::after {
     border-radius: 2px;
 }
 
-/* Container layout */
+/* --- Left align all main content text except h1 --- */
+.container,
+.settings,
+.debate-area,
+.judgment-area,
+label,
+input,
+select,
+button,
+#transcript-area,
+#verdict-area,
+.model-info,
+.download-container {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+body {
+    font-family: 'Bangla', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+    color: #2f2f2f;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+    position: relative;
+    line-height: 1.6;
+}
+
+@font-face {
+    font-family: 'Bangla';
+    src: local('Siyam Rupali'), local('Kalpurush'), local('SolaimanLipi');
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 28px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 32px 48px;
+    padding: 0 32px 48px 32px;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Settings panel */
 .settings {
     background: #ffffff;
     padding: 36px;
     border-radius: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     border: 1px solid #e5e5e5;
     animation: slideInUp 0.6s ease-out;
 }
@@ -69,22 +87,14 @@ header h1::after {
     gap: 24px;
 }
 
-.settings h2 {
-    margin: 0;
-    color: #1a1a1a;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-
-/* Accessible form elements */
 label {
     font-weight: 500;
     color: #374151;
     font-size: 0.95rem;
+    margin-bottom: 8px;
 }
 
-input[type="text"] {
+input[type="text"], select {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid #e5e5e5;
@@ -93,21 +103,50 @@ input[type="text"] {
     background: #ffffff;
     transition: all 0.2s ease;
     font-family: inherit;
+    margin-bottom: 4px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, select:focus {
     border-color: #d97706;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+    box-shadow: 0 0 0 3px rgba(217,119,6,0.1);
 }
 
-/* Debate Area */
+input[type="text"]:hover, select:hover {
+    border-color: #d1d5db;
+}
+
+button {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 4px 2px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+button:hover {
+    background: #2d2d2d;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
 .debate-area,
 .judgment-area {
     background: #ffffff;
     padding: 36px;
     border-radius: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     border: 1px solid #e5e5e5;
     animation: slideInUp 0.6s ease-out;
 }
@@ -128,14 +167,25 @@ input[type="text"]:focus {
     border-radius: 12px;
     background: #fafafa;
     overflow-y: auto;
+    font-size: 1rem;
+    max-height: min(600px, calc(70vh - 200px));
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 24px;
     background: #ffffff;
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+}
+
+.download-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left !important;
+    direction: ltr !important;
 }
 
 #download-history-btn {
@@ -147,13 +197,23 @@ footer {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    text-align: left !important;
+    direction: ltr !important;
 }
 
 #download-history-btn:hover {
     background: #2d2d2d;
     transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Responsive layout */
@@ -162,6 +222,44 @@ footer {
         grid-template-columns: 380px 1fr;
         gap: 40px;
     }
+    .judgment-area {
+        grid-column: span 2;
+    }
+    .settings {
+        min-width: 340px;
+    }
+    #transcript-area,
+    #verdict-area {
+        max-height: min(700px, calc(75vh - 200px));
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .container {
+        grid-template-columns: 340px 1fr;
+        gap: 32px;
+    }
+    .judgment-area {
+        grid-column: span 2;
+    }
+    .settings {
+        min-width: 320px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 899px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0 24px 40px 24px;
+        gap: 24px;
+    }
+    .settings, .debate-area, .judgment-area {
+        padding: 32px 28px;
+    }
+    #transcript-area,
+    #verdict-area {
+        max-height: min(500px, calc(60vh - 180px));
+    }
 }
 
 @media (max-width: 600px) {
@@ -169,14 +267,61 @@ footer {
         font-size: 2.2rem;
         margin-top: 24px;
     }
-
     .container {
         gap: 20px;
-        padding: 0 16px;
+        padding: 0 16px 32px 16px;
     }
-
     .settings, .debate-area, .judgment-area {
-        padding: 24px;
+        padding: 24px 20px;
         border-radius: 12px;
     }
+    .download-container {
+        padding: 0 16px;
+    }
+    #download-history-btn {
+        font-size: 0.95rem;
+        padding: 14px 20px;
+        margin-bottom: 32px;
+    }
+    .settings h2, .debate-area h2, .judgment-area h2 {
+        font-size: 1.25rem;
+    }
+    #transcript-area,
+    #verdict-area {
+        padding: 20px;
+        max-height: min(400px, calc(60vh - 160px));
+    }
+}
+
+/* Scrollbar styling */
+#transcript-area::-webkit-scrollbar,
+#verdict-area::-webkit-scrollbar {
+    width: 8px;
+}
+#transcript-area::-webkit-scrollbar-track,
+#verdict-area::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+#transcript-area::-webkit-scrollbar-thumb,
+#verdict-area::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+#transcript-area::-webkit-scrollbar-thumb:hover,
+#verdict-area::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input[type="text"]:focus-visible,
+select:focus-visible {
+    outline: 2px solid #d97706;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
