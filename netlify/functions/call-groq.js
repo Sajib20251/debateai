@@ -1,9 +1,9 @@
-// Netlify function to proxy OpenRouter API calls
+// Netlify function to proxy Groq API calls
 // This helps to keep the API key secure on the server-side.
 
 const fetch = require('node-fetch'); // node-fetch is available in Netlify functions environment
 
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 exports.handler = async (event, context) => {
     if (event.httpMethod !== 'POST') {
@@ -14,10 +14,10 @@ exports.handler = async (event, context) => {
     }
 
     const { model, prompt, systemMessage } = JSON.parse(event.body);
-    const apiKey = process.env.OPENROUTER_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
-        console.error('OPENROUTER_API_KEY environment variable not set.');
+        console.error('GROQ_API_KEY environment variable not set.');
         return {
             statusCode: 500,
             body: JSON.stringify({ error: 'API key not configured.' }),
@@ -32,14 +32,11 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const response = await fetch(OPENROUTER_API_URL, {
+        const response = await fetch(GROQ_API_URL, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
-                // It's good practice to let OpenRouter know where the request is coming from.
-                // 'HTTP-Referer': event.headers.referer || 'https://your-site-name.netlify.app', // Replace with your site URL
-                // 'X-Title': 'Bengali AI Debate Engine', // Replace with your site title
             },
             body: JSON.stringify({
                 messages: [
@@ -56,20 +53,19 @@ exports.handler = async (event, context) => {
 
         if (!response.ok) {
             const errorBody = await response.text();
-            console.error(`OpenRouter API error: ${response.status} ${errorBody}`);
-            // Forward the status and error from OpenRouter if possible, or use a generic one.
-            // Be careful not to leak sensitive error details to the client.
+            console.error(`Groq API error: ${response.status} ${errorBody}`);
+            
             let clientErrorMessage = `Error calling LLM: ${response.status}`;
             if (response.status === 401) clientErrorMessage = "API key invalid or quota exceeded.";
             if (response.status === 429) clientErrorMessage = "Rate limit exceeded or quota finished.";
-            if (response.status === 500 && errorBody.includes("No instances available")) {
+            if (response.status === 400) clientErrorMessage = "Bad request - check model name or parameters.";
+            if (response.status === 503) {
                  clientErrorMessage = "এই মুহূর্তে নির্বাচিত মডেলটি উপলব্ধ নেই। অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।";
             }
 
-
             return {
-                statusCode: response.status, // Or a generic 500/502 for upstream errors
-                body: JSON.stringify({ error: clientErrorMessage, details: errorBody }), // Consider not sending raw errorBody to client
+                statusCode: response.status,
+                body: JSON.stringify({ error: clientErrorMessage, details: errorBody }),
             };
         }
 
@@ -80,10 +76,10 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('Error in Netlify function calling OpenRouter:', error);
+        console.error('Error in Netlify function calling Groq:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to fetch from OpenRouter via proxy.', details: error.message }),
+            body: JSON.stringify({ error: 'Failed to fetch from Groq via proxy.', details: error.message }),
         };
     }
 };
