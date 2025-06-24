@@ -1,4 +1,4 @@
-/* Base styles - Claude-inspired white theme */
+/* Base styles - Improved for accessibility and semantic structure */
 body {
     font-family: 'Bangla', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
@@ -13,41 +13,23 @@ body {
     line-height: 1.6;
 }
 
-/* Subtle background texture */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        radial-gradient(circle at 20% 80%, rgba(245, 245, 245, 0.8) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(250, 250, 250, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(248, 248, 248, 0.7) 0%, transparent 50%);
-    animation: subtleFloat 25s ease-in-out infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes subtleFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-5px) rotate(0.5deg); }
-    66% { transform: translateY(-3px) rotate(-0.3deg); }
-}
-
-h1 {
+header {
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    padding: 40px 0;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
     color: #1a1a1a;
     font-size: 2.8rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     position: relative;
+    margin: 0;
 }
 
-h1::after {
+header h1::after {
     content: '';
     position: absolute;
     bottom: -12px;
@@ -59,12 +41,6 @@ h1::after {
     border-radius: 2px;
 }
 
-/* Bengali font support */
-@font-face {
-    font-family: 'Bangla';
-    src: local('Siyam Rupali'), local('Kalpurush'), local('SolaimanLipi');
-}
-
 /* Container layout */
 .container {
     display: grid;
@@ -72,7 +48,7 @@ h1::after {
     gap: 28px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 32px 48px 32px;
+    padding: 0 32px 48px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -82,163 +58,66 @@ h1::after {
     background: #ffffff;
     padding: 36px;
     border-radius: 16px;
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
     border: 1px solid #e5e5e5;
-    margin-bottom: 0;
-    position: relative;
     animation: slideInUp 0.6s ease-out;
-    height: fit-content;
 }
 
-@keyframes slideInUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.settings form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .settings h2 {
-    margin-top: 0;
+    margin: 0;
     color: #1a1a1a;
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 24px;
     letter-spacing: -0.01em;
 }
 
-.settings div {
-    margin-bottom: 24px;
-    animation: fadeInLeft 0.5s ease-out;
-    animation-fill-mode: both;
-}
-
-.settings div:nth-child(2) { animation-delay: 0.1s; }
-.settings div:nth-child(3) { animation-delay: 0.15s; }
-.settings div:nth-child(4) { animation-delay: 0.2s; }
-.settings div:nth-child(5) { animation-delay: 0.25s; }
-
-@keyframes fadeInLeft {
-    from { transform: translateX(-15px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-/* Form elements */
+/* Accessible form elements */
 label {
-    display: block;
-    margin-bottom: 8px;
     font-weight: 500;
     color: #374151;
     font-size: 0.95rem;
 }
 
-input[type="text"],
-select {
+input[type="text"] {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid #e5e5e5;
     border-radius: 8px;
     font-size: 1rem;
     background: #ffffff;
-    margin-bottom: 4px;
     transition: all 0.2s ease;
     font-family: inherit;
 }
 
-input[type="text"]:focus,
-select:focus {
+input[type="text"]:focus {
     border-color: #d97706;
     outline: none;
     box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
 }
 
-input[type="text"]:hover,
-select:hover {
-    border-color: #d1d5db;
-}
-
-button {
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin: 4px 2px;
-    transition: all 0.2s ease;
-    font-family: inherit;
-}
-
-button:hover {
-    background: #2d2d2d;
-    transform: translateY(-1px);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-.download-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#download-history-btn {
-    width: 100%;
-    margin-top: 8px;
-    margin-bottom: 40px;
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 16px 24px;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(0, 0, 0, 0.06);
-}
-
-#download-history-btn:hover {
-    background: #2d2d2d;
-    transform: translateY(-1px);
-    box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
-/* Debate areas */
+/* Debate Area */
 .debate-area,
 .judgment-area {
     background: #ffffff;
     padding: 36px;
     border-radius: 16px;
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
     border: 1px solid #e5e5e5;
-    margin-bottom: 0;
     animation: slideInUp 0.6s ease-out;
-    animation-delay: 0.1s;
-    animation-fill-mode: both;
-    display: flex;
-    flex-direction: column;
 }
 
 .debate-area h2,
 .judgment-area h2 {
-    margin-top: 0;
     color: #1a1a1a;
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 24px;
-    letter-spacing: -0.01em;
 }
 
 #transcript-area,
@@ -249,149 +128,32 @@ button:active {
     border-radius: 12px;
     background: #fafafa;
     overflow-y: auto;
-    max-height: min(600px, calc(70vh - 200px));
-    margin-top: 16px;
-    font-size: 1rem;
-    flex: 1;
 }
 
-/* Debate phases */
-.phase {
+/* Footer */
+footer {
+    text-align: center;
+    padding: 24px;
     background: #ffffff;
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 20px;
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.1),
-        0 1px 2px rgba(0, 0, 0, 0.06);
-    border: 1px solid #f3f4f6;
-    animation: phaseSlideIn 0.5s ease-out;
-    transition: all 0.2s ease;
-    width: 100%;
-    box-sizing: border-box;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.phase:hover {
-    transform: translateY(-2px);
-    box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
-@keyframes phaseSlideIn {
-    from {
-        transform: translateX(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.phase-title {
-    color: #1a1a1a;
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-
-.speaker-argument {
-    margin: 0;
-    white-space: pre-wrap;
-    font-size: 1rem;
-    line-height: 1.7;
-    text-align: justify;
-    color: #374151;
-    border-left: 3px solid #f3f4f6;
-    padding-left: 16px;
-}
-
-/* Role-specific styling */
-.phase:has(.phase-title:contains("পক্ষে")) {
-    border-left: 4px solid #059669;
-}
-
-.phase:has(.phase-title:contains("বিপক্ষে")) {
-    border-left: 4px solid #dc2626;
-}
-
-.phase:has(.phase-title:contains("বিচারক")) {
-    border-left: 4px solid #7c3aed;
-}
-
-/* Loading and state indicators */
-#start-debate-btn[disabled] {
-    background: #9ca3af !important;
-    cursor: not-allowed;
-    position: relative;
-    opacity: 0.7;
-}
-
-#start-debate-btn[disabled]:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    width: 16px;
-    height: 16px;
-    margin-top: -8px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 1s linear infinite;
-}
-
-.system-message {
-    color: #6b7280;
-    font-style: italic;
-    border-left: 4px solid #e5e7eb;
-    padding: 16px;
-    margin: 16px 0;
-    background: #f9fafb;
-    border-radius: 8px;
-}
-
-.error-message {
-    color: #dc2626;
-    background: #fef2f2;
-    border: 2px solid #fecaca;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 0;
-    animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    75% { transform: translateX(3px); }
-}
-
-/* Debate phase indicators */
-.debate-phase-indicator {
-    display: inline-block;
-    background: #374151;
+#download-history-btn {
+    background: #1a1a1a;
     color: white;
-    padding: 4px 12px;
-    border-radius: 16px;
-    font-size: 0.8rem;
-    margin-left: 12px;
-    vertical-align: middle;
-    font-weight: 500;
-}
-
-/* Better Bengali typography */
-.speaker-argument, .judge-verdict {
+    padding: 16px 24px;
     font-size: 1rem;
-    line-height: 1.7;
-    text-align: justify;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+#download-history-btn:hover {
+    background: #2d2d2d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive layout */
@@ -400,124 +162,21 @@ button:active {
         grid-template-columns: 380px 1fr;
         gap: 40px;
     }
-    .judgment-area {
-        grid-column: span 2;
-    }
-    .settings {
-        min-width: 340px;
-    }
-    #transcript-area,
-    #verdict-area {
-        max-height: min(700px, calc(75vh - 200px));
-    }
-}
-
-@media (min-width: 900px) and (max-width: 1199px) {
-    .container {
-        grid-template-columns: 340px 1fr;
-        gap: 32px;
-    }
-    .judgment-area {
-        grid-column: span 2;
-    }
-    .settings {
-        min-width: 320px;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 899px) {
-    .container {
-        grid-template-columns: 1fr;
-        padding: 0 24px 40px 24px;
-        gap: 24px;
-    }
-    
-    .settings, .debate-area, .judgment-area {
-        padding: 32px 28px;
-    }
-    
-    #transcript-area,
-    #verdict-area {
-        max-height: min(500px, calc(60vh - 180px));
-    }
 }
 
 @media (max-width: 600px) {
-    h1 {
+    header h1 {
         font-size: 2.2rem;
         margin-top: 24px;
-        margin-bottom: 32px;
     }
 
     .container {
-        grid-template-columns: 1fr;
-        padding: 0 16px 32px 16px;
         gap: 20px;
+        padding: 0 16px;
     }
 
     .settings, .debate-area, .judgment-area {
-        padding: 24px 20px;
+        padding: 24px;
         border-radius: 12px;
     }
-
-    .download-container {
-        padding: 0 16px;
-    }
-    
-    #download-history-btn {
-        font-size: 0.95rem;
-        padding: 14px 20px;
-        margin-bottom: 32px;
-    }
-
-    .settings h2, .debate-area h2, .judgment-area h2 {
-        font-size: 1.25rem;
-    }
-
-    .phase {
-        padding: 20px;
-        border-radius: 10px;
-    }
-    
-    #transcript-area,
-    #verdict-area {
-        padding: 20px;
-        max-height: min(400px, calc(60vh - 160px));
-    }
-}
-
-/* Scrollbar styling */
-#transcript-area::-webkit-scrollbar,
-#verdict-area::-webkit-scrollbar {
-    width: 8px;
-}
-
-#transcript-area::-webkit-scrollbar-track,
-#verdict-area::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 3px;
-}
-
-#transcript-area::-webkit-scrollbar-thumb,
-#verdict-area::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 3px;
-}
-
-#transcript-area::-webkit-scrollbar-thumb:hover,
-#verdict-area::-webkit-scrollbar-thumb:hover {
-    background: #9ca3af;
-}
-
-/* Focus states for accessibility */
-button:focus-visible,
-input[type="text"]:focus-visible,
-select:focus-visible {
-    outline: 2px solid #d97706;
-    outline-offset: 2px;
-}
-
-/* Smooth transitions */
-* {
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
