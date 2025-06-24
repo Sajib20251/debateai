@@ -11,6 +11,14 @@ body {
     letter-spacing: 0.01em;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 30px; /* Add some margin above */
+    margin-bottom: 30px; /* Add some margin below */
+    color: #2c3e50; /* Match other heading colors */
+    font-size: 2em; /* Example size, can be adjusted */
+}
+
 /* Bengali font support */
 @font-face {
     font-family: 'Bangla';
@@ -113,18 +121,23 @@ button[style*="background:#e74c3c"]:hover {
 
 #download-history-btn {
     width: 100%;
-    margin-top: 22px !important;
-    background: linear-gradient(90deg, #27ae60 60%, #6dd5b3 100%) !important;
-    font-size: 1.12em;
+    margin-top: 22px; /* Removed !important */
+    background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%); /* Slightly brighter green gradient */
+    color: white; /* Ensure text color is white */
+    border: none; /* Ensure no border */
+    padding: 12px 18px; /* Adjusted padding */
+    font-size: 1.1em; /* Harmonized font size */
     font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(39,174,96,0.07);
+    border-radius: 10px; /* More rounded */
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); /* Softer, themed shadow */
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s; /* Added full transition */
 }
 
 #download-history-btn:hover {
-    background: linear-gradient(90deg, #219150 60%, #27ae60 100%) !important;
-    box-shadow: 0 6px 18px rgba(39,174,96,0.13);
-    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(90deg, #27ae60 0%, #229954 100%); /* Darker green on hover */
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.4); /* Enhanced shadow on hover */
+    transform: translateY(-2px) scale(1.02); /* Slightly adjusted hover effect */
 }
 
 /* API key list styling */
