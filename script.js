@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Groq Model mapping - these are the actual model IDs used by Groq
     const MODEL_MAP = {
-        'llama-4-maverick': 'llama-4-maverick-17b-128e-instruct',
+        'llama-4-maverick': 'meta-llama/llama-4-maverick-17b-128e-instruct',
         'llama-3.1-8b': 'llama-3.1-8b-instant',
         'llama-3-70b': 'llama3-70b-8192',
         'llama-3-8b': 'llama3-8b-8192',
