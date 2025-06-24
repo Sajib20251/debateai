@@ -1,11 +1,11 @@
 /* Base styles */
 body {
-    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Bangla', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
     direction: rtl;
     text-align: right;
-    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    background-color: #f8f9fa; /* New light background for body */
     color: #222;
     min-height: 100vh;
     letter-spacing: 0.01em;
@@ -29,11 +29,11 @@ body {
 
 /* Settings panel */
 .settings {
-    background: rgba(255,255,255,0.97);
+    background: #ffffff; /* Solid white background */
     padding: 32px 28px 28px 28px;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10), 0 2px 8px rgba(44, 62, 80, 0.07);
-    border: 1.5px solid #e3e9f0;
+    box-shadow: 0 6px 24px rgba(44, 62, 80, 0.08), 0 2px 6px rgba(44, 62, 80, 0.05); /* Slightly softer shadow */
+    border: 1px solid #dee2e6; /* Lighter border */
     margin-bottom: 0;
 }
 
@@ -42,12 +42,12 @@ body {
     color: #2c3e50;
     font-size: 1.5em;
     letter-spacing: 1px;
-    margin-bottom: 22px;
+    margin-bottom: 18px; /* Compacted */
     font-weight: 700;
 }
 
 .settings div {
-    margin-bottom: 22px;
+    margin-bottom: 18px; /* Compacted */
 }
 
 /* Form elements */
@@ -62,7 +62,7 @@ label {
 input[type="text"],
 select {
     width: 100%;
-    padding: 12px 14px;
+    padding: 10px 12px; /* Compacted */
     border: 1.7px solid #d0d7e2;
     border-radius: 7px;
     font-size: 1.07em;
@@ -84,7 +84,7 @@ button {
     background: linear-gradient(90deg, #3498db 60%, #6dd5fa 100%);
     color: white;
     border: none;
-    padding: 12px 22px;
+    padding: 10px 18px; /* Compacted */
     border-radius: 7px;
     cursor: pointer;
     font-size: 1.07em;
@@ -155,11 +155,11 @@ button[style*="background:#e74c3c"]:hover {
 /* Debate areas */
 .debate-area,
 .judgment-area {
-    background: rgba(255,255,255,0.98);
+    background: #ffffff; /* Solid white background */
     padding: 30px 26px 26px 26px;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10), 0 2px 8px rgba(44, 62, 80, 0.07);
-    border: 1.5px solid #e3e9f0;
+    box-shadow: 0 6px 24px rgba(44, 62, 80, 0.08), 0 2px 6px rgba(44, 62, 80, 0.05); /* Slightly softer shadow */
+    border: 1px solid #dee2e6; /* Lighter border */
     margin-bottom: 0;
 }
 
@@ -169,41 +169,44 @@ button[style*="background:#e74c3c"]:hover {
     color: #2c3e50;
     font-size: 1.32em;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 18px; /* Compacted */
     font-weight: 700;
 }
 
 #transcript-area,
 #verdict-area {
     min-height: 200px;
-    border: 1.7px solid #e3e9f0;
-    padding: 20px 16px;
+    border: 1px solid #e9ecef; /* Lighter border */
+    padding: 15px; /* Compacted */
     border-radius: 8px;
-    background: #fafdff;
+    background: #fdfdfd; /* Very light off-white */
     overflow-y: auto;
     max-height: 500px;
     margin-top: 10px;
     font-size: 1.12em;
-    box-shadow: 0 1px 2px rgba(52,152,219,0.03);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.04); /* Subtle inner shadow */
 }
 
 /* Debate phases */
 .phase {
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #d0d7e2;
+    background-color: #f0f4f8; /* Light background for the bubble */
+    border-radius: 15px; /* Rounded corners */
+    padding: 12px 18px; /* Compacted Inner padding */
+    margin-bottom: 15px; /* Compacted Space between bubbles */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Soft shadow */
+    border-bottom: none; /* Remove the previous dashed border */
     animation: fadeIn 0.5s ease-out;
 }
 
 .phase:last-child {
-    border-bottom: none;
+    /* No specific change needed for last-child border as it's removed above */
 }
 
 .phase-title {
     color: #2c3e50;
     margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 1.13em;
+    margin-bottom: 10px; /* Compacted */
+    font-size: 1.1em; /* Slightly adjusted for compactness */
     font-weight: bold;
     letter-spacing: 0.5px;
 }
@@ -284,11 +287,11 @@ button[style*="background:#e74c3c"]:hover {
 
 /* Better Bengali typography */
 .speaker-argument, .judge-verdict {
-    font-size: 1.15em;
-    line-height: 1.95;
+    font-size: 1.12em; /* Slightly adjusted for compactness */
+    line-height: 1.8; /* Adjusted line height */
     text-align: justify;
     hyphens: auto;
-    font-family: 'Bangla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family will be inherited from body, no need to repeat unless specifically different */
 }
 
 @keyframes spin {
