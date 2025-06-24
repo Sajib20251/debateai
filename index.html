@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>বাংলা এআই বিতর্ক ইঞ্জিন</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #download-history-btn {
+            width: 100%;
+            margin-top: 24px;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        #download-history-btn:hover {
+            background: #2d2d2d;
+            transform: translateY(-1px);
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+    </style>
 </head>
 <body>
     <h1>বাংলা এআই বিতর্ক ইঞ্জিন</h1>
@@ -37,6 +63,7 @@
                     <option value="llama3-8b-4096">Llama3-8B (Free)</option>
                 </select>
             </div>
+
             <div>
                 <label for="judge-model">বিচারক (LLM):</label>
                 <select id="judge-model" name="judge-model">
@@ -64,7 +91,8 @@
             </div>
         </div>
     </div>
-    <button id="download-history-btn" style="background:#27ae60;margin-top:10px;">ডিবেট ডাউনলোড করুন (TXT)</button>
+
+    <button id="download-history-btn">ডিবেট ডাউনলোড করুন (TXT)</button>
 
     <script src="script.js"></script>
 </body>
