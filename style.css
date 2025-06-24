@@ -179,20 +179,26 @@ button:active {
 #download-history-btn {
     width: 100%;
     margin-top: 24px;
-    background: #059669;
+    background: #1a1a1a;
     color: white;
     border: none;
     padding: 16px 24px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 #download-history-btn:hover {
-    background: #047857;
+    background: #2d2d2d;
     transform: translateY(-1px);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* Debate areas */
