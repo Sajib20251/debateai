@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা এআই বিতর্ক ইঞ্জিন</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>বাংলা এআই বিতর্ক ইঞ্জিন</h1>
+    </header>
+
+    <main class="container">
+        <section class="settings">
+            <form>
+                <div>
+                    <label for="debate-topic">বিতর্কের বিষয়:</label>
+                    <input type="text" id="debate-topic" name="debate-topic" placeholder="এখানে বিতর্কের বিষয় লিখুন..." aria-label="বিতর্কের বিষয়">
+                </div>
+                <div class="model-info">
+                    <p>মডেল: Llama-4 Maverick</p>
+                </div>
+                <button id="start-debate-btn" type="submit">বিতর্ক শুরু করুন</button>
+            </form>
+        </section>
+
+        <section class="debate-area">
+            <h2>বিতর্কের বিবরণ</h2>
+            <div id="transcript-area" aria-live="polite" tabindex="0">
+                <!-- Debate phases will be appended here -->
+            </div>
+        </section>
+
+        <section class="judgment-area">
+            <h2>বিচারকের রায়</h2>
+            <div id="verdict-area" aria-live="polite" tabindex="0">
+                <!-- Judge's verdict will be shown here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="download-container">
+            <button id="download-history-btn">ডিবেট ডাউনলোড করুন (TXT)</button>
+             <div class="footer-credits">
+      Developed by <span class="dev-names"> Sajib </span>
+      | <a href="mailto:sajibnmd@yahoo.com" class="contact-link">Contact</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
